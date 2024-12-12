@@ -3,13 +3,11 @@ spring:
         restart:
             enabled: true
     datasource:
-        url: jdbc:mysql://localhost/otp?useUnicode=true&characterEncoding=utf8&useSSL=false # URL for MySQL 5.7
-        # url: jdbc:mysql://localhost/otp9?useSSL=false&serverTimezone=CET&allowPublicKeyRetrieval=true&useUnicode=true # URL for MySQL 8.X
+        url: jdbc:mysql://mysql-3c05628f-satyapal06-1224.f.aivencloud.com:20828/defaultdb?sslmode=require
         name: MySQL Local Connection
-        username: root
-        password: root
-        driver-class-name: com.mysql.jdbc.Driver # MySQL 5.7.X / 6.X.X
-        # driver-class-name: com.mysql.cj.jdbc.Driver # MySQL 8
+        username: avnadmin
+        password: AVNS_GTqLd4-hgBJi2L-gXAA
+        driver-class-name: com.mysql.cj.jdbc.Driver
         hikari:
             data-source-properties:
                 cachePrepStmts: true
@@ -19,16 +17,13 @@ spring:
     jpa:
         database-platform: org.hibernate.dialect.MySQLInnoDBDialect
         database: MYSQL
-        show_sql: false
-        open-in-view: false
+        show_sql: true
+        open-in-view: true
         factory-class: org.springframework.data.envers.repository.support.EnversRevisionRepositoryFactoryBean
         properties:
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
-
-liquibase:
-    contexts: dev
 
 jwt:
     header: Authorization
@@ -43,6 +38,6 @@ debug: true
 email:
   host: smtp.gmail.com
   port: 587
-  username: your_username
-  password: your_password
+  username: satyapal06@gmail.com
+  password: mrms ioxj ojon rcuu
   debug: true

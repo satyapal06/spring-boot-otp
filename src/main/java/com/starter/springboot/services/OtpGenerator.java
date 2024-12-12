@@ -56,6 +56,10 @@ public class OtpGenerator {
      */
     public Integer getOPTByKey(String key)
     {
+        otpCache.asMap().forEach((k, v) -> {
+            System.out.println("Key::: " + k + " Value:: " + v);
+        });
+
         return otpCache.getIfPresent(key);
     }
 

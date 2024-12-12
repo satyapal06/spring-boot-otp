@@ -3,6 +3,3 @@ spring:
             name: Starter Project
     profiles:
         active: dev
-
-liquibase:
-    change-log: classpath:liquibase/db.changelog-master.xml

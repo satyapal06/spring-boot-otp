@@ -37,4 +37,19 @@ public class UserService {
         }
         return null;
     }
+
+    /**
+     * Method for getting e-mail by username (key)
+     *
+     * @param mobileNumber - provided username
+     * @return e-mail
+     */
+    public User findByMobileNumber(String mobileNumber)
+    {
+        Optional<User> user = userRepository.findById(mobileNumber);
+        if (user.isPresent()) {
+            return user.get();
+        }
+        return null;
+    }
 }

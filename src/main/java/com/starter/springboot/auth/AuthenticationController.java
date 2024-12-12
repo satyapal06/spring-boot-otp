@@ -1,11 +1,13 @@
 package com.starter.springboot.auth;
 
 
+import com.starter.springboot.domain.User;
 import com.starter.springboot.rest.dto.LoginDTO;
 import com.starter.springboot.rest.dto.VerifyTokenRequestDTO;
 import com.starter.springboot.security.jwt.JWTToken;
 import com.starter.springboot.security.jwt.TokenProvider;
 import com.starter.springboot.services.OtpService;
+import com.starter.springboot.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,19 +35,23 @@ public class AuthenticationController {
     private TokenProvider tokenProvider;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private OtpService otpService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
-
 
     @PostMapping(value = "/authenticate")
     public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDTO loginDTO)
     {
         log.debug("Credentials: {}", loginDTO);
 
+        User user = userService.findByMobileNumber(loginDTO.getMobileNumber());
+
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-            loginDTO.getUsername(), loginDTO.getPassword()
+                user.getUsername(), "admin"
         );
         try
         {
@@ -64,7 +70,8 @@ public class AuthenticationController {
     @PostMapping(value = "verify")
     public ResponseEntity<JWTToken> verifyOtp(@Valid @RequestBody VerifyTokenRequestDTO verifyTokenRequest)
     {
-        String username = verifyTokenRequest.getUsername();
+        User user = userService.findByMobileNumber(verifyTokenRequest.getMobileNumber());
+        String username = user.getUsername();
         Integer otp = verifyTokenRequest.getOtp();
         Boolean rememberMe = verifyTokenRequest.getRememberMe();
 

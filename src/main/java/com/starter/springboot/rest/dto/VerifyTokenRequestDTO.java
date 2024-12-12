@@ -10,22 +10,19 @@ public class VerifyTokenRequestDTO {
     @NotNull
     @NotBlank
     @NotEmpty
-    private String username;
+    private String mobileNumber;
 
     @NotNull
-    @NotBlank
-    @NotEmpty
     private Integer otp;
 
     private Boolean rememberMe;
 
-
-    public String getUsername() {
-        return username;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     public Integer getOtp() {

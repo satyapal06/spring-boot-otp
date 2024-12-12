@@ -1,41 +1,22 @@
 package com.starter.springboot.rest.dto;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-/**
- * Login Data Transfer Object
- *
- * @class LoginDTO
- */
 public class LoginDTO {
 
-    @Pattern(regexp = "^(?=.{1,50}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$")
     @NotNull
-    @Size(min = 1, max = 50)
-    private String username;
-
-    @NotNull
-    @Size(min = 4, max = 32)
-    private String password;
+    @Size(min = 1, max = 10)
+    private String mobileNumber;
 
     private Boolean rememberMe;
 
-    public String getUsername() {
-        return username;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     public Boolean isRememberMe() {
@@ -49,8 +30,7 @@ public class LoginDTO {
     @Override
     public String toString() {
         return "LoginDTO{" +
-                "password='" + password + '\'' +
-                ", username='" + username + '\'' +
+                "mobileNumber='" + mobileNumber + '\'' +
                 ", rememberMe=" + rememberMe +
                 '}';
     }
